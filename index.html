@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>chat example</title>
+<script src="client.js"></script>
+<form>
+  <input type="text" id="name" value="guest" style="width: 75px;">
+  <input type="text" id="message" placeholder="type message here..." style="width: 300px;">
+  <input type="submit" onclick="send(); return false;" value="send">
+  <button onclick="clearMessages(); return false;">clear</button>
+</form>
+<hr>
+<div id="messages"></div>
