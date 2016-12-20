@@ -24,7 +24,7 @@ liveDbStream.on('data', function(data) {
     messages = {}
   }
 
-  if (data.key.indexOf('message:') >= 0) {
+  if (data.key && data.key.indexOf('message:') >= 0) {
     var idx = data.key.split(':')[1]
     messages[idx] = '' //not sophisticated enough to handle messages generated at exact same time
     db.put('messages', messages)
@@ -38,7 +38,7 @@ var server = http.createServer(function(req, res) {
       break;
     case '/client.js':
       res.writeHead(200, {'Content-Type': 'application/javascript'})
-      browserify('./client.js').bundle({debug:true}).pipe(res)
+      browserify('./client.js').bundle().pipe(res)
       break;
     default: 
       res.writeHead(200, {'Content-Type': 'text/plain'})
